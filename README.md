@@ -7,20 +7,20 @@
 
 **Lotus Portrait Vanillafied** is an addon for the [Lotus](https://sp-mod.com/mod/1232/lotus) trader mod. It replaces the trader portrait with one that fits the style of the vanilla traders.
 
-<img src="lotus.jpg" alt="portrait" width="128"/>
-
 ## 📁 Installation
 
 * Install the Lotus trader mod
-* Download the release zip matching your Lotus version
+* Download the addon release matching your Lotus version
 * Extract it into your game folder and overwrite when asked
+* Clear the temporary files in the launcher settings to apply the new portrait
 * Start the game
 
-> [!NOTE]
-> If the old portrait still shows up, clear the temporary files in the launcher settings.
-
 > [!WARNING]
-> This addon overwrites the original portrait file of the Lotus mod. To get the original portrait back, you have to reinstall the mod.
+> This addon overwrites some original files of the Lotus mod. To get the original files back, you have to reinstall the mod.
+
+## 📷 Preview
+
+<img src="lotus.jpg" alt="portrait" width="128"/>
 
 ## 🙏 Credits
 
