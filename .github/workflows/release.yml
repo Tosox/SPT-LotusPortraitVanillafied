@@ -1,0 +1,50 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-ver:
+        description: Release version
+        required: true
+        default: v1.0.0
+      mod-ver:
+        description: Mod version
+        required: true
+        type: choice
+        options: ["1.6.x", "1.7.x", "1.8.x"]
+
+env:
+  PLUGIN_NAME: LotusPortraitVanillafied
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Create Release Zip
+      run: |
+        case "${{ inputs.mod-ver }}" in
+          1.6.x) target="user/mods/Lunnayaluna Lotus/res/lotus.png" ;;
+          1.7.x) target="SPT/user/mods/Lotus/res/Lotus.jpg" ;;
+          1.8.x) target="SPT_Runtime/user/mods/Lotus/res/Lotus.jpg" ;;
+        esac
+        mkdir -p "release/$(dirname "$target")"
+        cp lotus.jpg "release/$target"
+        (cd release && zip -r "../${{ env.PLUGIN_NAME }}-Lotus${{ inputs.mod-ver }}-${{ inputs.release-ver }}.zip" .)
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ inputs.release-ver }}
+        name: ${{ inputs.release-ver }}
+        files: ${{ env.PLUGIN_NAME }}-Lotus${{ inputs.mod-ver }}-${{ inputs.release-ver }}.zip
+        draft: false
+        prerelease: false
+        make_latest: true
